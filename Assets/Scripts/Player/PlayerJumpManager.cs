@@ -51,6 +51,7 @@ public class PlayerJumpManager : MonoBehaviour
             Debug.Log("double jump");
             _playerJumpMovement.Set(_playerDirection.x, 1, _playerDirection.y);
             _rigidbody.AddForce(_playerJumpMovement * _jumpForce, ForceMode.Impulse);
+            _jumpBufferTimeCounter = 0f;
             _canDoubleJump = false;
         }
     }
@@ -79,8 +80,8 @@ public class PlayerJumpManager : MonoBehaviour
         _isGrounded = false;
         _canJump = false;
         _canDoubleJump = false;
-        _jumpForce = 5f;
-        _doubleJumpForce = 2f;
+        _jumpForce = 10f;
+        _doubleJumpForce = 5f;
         _coyoteTime = 0.5f;
         _coyoteTimeCounter = 0f;
         _jumpBufferTime = 0.2f;

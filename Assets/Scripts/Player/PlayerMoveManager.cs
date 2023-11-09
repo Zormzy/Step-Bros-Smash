@@ -13,6 +13,12 @@ public class PlayerMoveManager : MonoBehaviour
         PlayerMovementInitialisation();
     }
 
+    private void Update()
+    {
+        if (_isMoving)
+            PlayerMovement();
+    }
+
     public void PlayerMovement()
     {
         _playerMovement.Set(_playerMovementDirection.x, 0, _playerMovementDirection.y);

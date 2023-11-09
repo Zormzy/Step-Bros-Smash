@@ -7,18 +7,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private PlayerMoveManager _playerMoveManager;
     [SerializeField] private PlayerJumpManager _playerJumpManager;
 
-    public float speed = 5;
     private Vector2 movementInput;
-
-    private void Awake()
-    {
-
-    }
-
-    void Update()
-    {
-        transform.Translate(new Vector3(movementInput.x, 0, movementInput.y) * speed * Time.deltaTime);
-    }
 
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -26,14 +15,13 @@ public class PlayerController : MonoBehaviour
             movementInput = context.ReadValue<Vector2>();
 
         _playerMoveManager._playerMovementDirection = movementInput;
-        _playerMoveManager.PlayerMovement();
+        _playerMoveManager._isMoving = context.performed;
     }
 
     public void OnJump(InputAction.CallbackContext context)
     {
         _playerJumpManager._playerDirection = movementInput;
-        //_playerJumpManager.PlayerJump();
-        _playerJumpManager.PlayerJumpBuffer(context.ReadValueAsButton()); ;
+        _playerJumpManager.PlayerJumpBuffer(context.ReadValueAsButton());
     }
 
     public void OnAttack(InputAction.CallbackContext context)
