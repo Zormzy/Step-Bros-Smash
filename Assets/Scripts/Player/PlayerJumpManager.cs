@@ -29,13 +29,13 @@ public class PlayerJumpManager : MonoBehaviour
         PlayerJumpCoyoteTime();
         PlayerJump();
         PlayerDoubleJump();
+        PlayerJumpVariable();
     }
 
     public void PlayerJump()
     {
         if (_canJump && _coyoteTimeCounter > 0f && _jumpBufferTimeCounter > 0f)
         {
-            Debug.Log("jump");
             _playerJumpMovement.Set(_playerDirection.x, 1, _playerDirection.y);
             _rigidbody.AddForce(_playerJumpMovement * _jumpForce, ForceMode.Impulse);
             _coyoteTimeCounter = 0f;
@@ -48,11 +48,18 @@ public class PlayerJumpManager : MonoBehaviour
     {
         if (!_canJump && _canDoubleJump && _jumpBufferTimeCounter > 0f)
         {
-            Debug.Log("double jump");
             _playerJumpMovement.Set(_playerDirection.x, 1, _playerDirection.y);
             _rigidbody.AddForce(_playerJumpMovement * _jumpForce, ForceMode.Impulse);
             _jumpBufferTimeCounter = 0f;
             _canDoubleJump = false;
+        }
+    }
+
+    private void PlayerJumpVariable()
+    {
+        if (_jumpBufferTimeCounter > 0f)
+        {
+            // Todo sauter plus haut tant qu'appuyé
         }
     }
 
