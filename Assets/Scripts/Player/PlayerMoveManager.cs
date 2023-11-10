@@ -5,10 +5,11 @@ public class PlayerMoveManager : MonoBehaviour
     [Header("Components")]
     private Rigidbody _rigidbody;
     public Vector2 _playerMovementDirection;
-    public Vector3 _playerMovement;
+    private Vector3 _playerMovement;
 
     [Header("Booleen")]
     public bool _isMoving;
+    public bool _isParrying;
 
     [Header("Movement speed")]
     public float _currentSpeed;
@@ -17,14 +18,14 @@ public class PlayerMoveManager : MonoBehaviour
 
     private void Awake()
     {
-        PlayerMovementInitialisation();
+        PlayerMovementInitialization();
     }
 
     private void Update()
     {
         _currentSpeed = _rigidbody.velocity.magnitude;
 
-        if (_isMoving)
+        if (_isMoving && !_isParrying)
             PlayerMovement();
     }
 
@@ -37,7 +38,7 @@ public class PlayerMoveManager : MonoBehaviour
             _rigidbody.velocity = Vector3.ClampMagnitude(_rigidbody.velocity, _playerMovementMaxSpeed);
     }
 
-    private void PlayerMovementInitialisation()
+    private void PlayerMovementInitialization()
     {
         _rigidbody = GetComponent<Rigidbody>();
         _playerMovementDirection.Set(0, 0);
@@ -46,6 +47,7 @@ public class PlayerMoveManager : MonoBehaviour
         _playerMovementSpeed = 15f;
         _playerMovementMaxSpeed = 10f;
         _isMoving = false;
+        _isParrying = false;
     }
 
     private void OnCollisionEnter(Collision collision)

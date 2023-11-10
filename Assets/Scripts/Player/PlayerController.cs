@@ -6,6 +6,8 @@ public class PlayerController : MonoBehaviour
     [Header("Scripts instances")]
     [SerializeField] private PlayerMoveManager _playerMoveManager;
     [SerializeField] private PlayerJumpManager _playerJumpManager;
+    [SerializeField] private PlayerAttackManager _playerAttackManager;
+    [SerializeField] private PlayerParryManager _playerParryManager;
 
     [Header("Controller values")]
     private string _controllerName;
@@ -15,6 +17,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         _controllerName = null;
+        movementInput = Vector2.right;
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -53,6 +56,14 @@ public class PlayerController : MonoBehaviour
         if (_controllerName == null)
             _controllerName = context.control.device.displayName;
 
+        _playerAttackManager.PlayerAttack(movementInput);
+    }
 
+    public void OnParry(InputAction.CallbackContext context)
+    {
+        if (_controllerName == null)
+            _controllerName = context.control.device.displayName;
+
+        _playerParryManager.PlayerParry(context.ReadValueAsButton());
     }
 }
