@@ -223,8 +223,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerMovementDirection: {x: 0, y: 0}
   _playerMovement: {x: 0, y: 0, z: 0}
-  _playerMovementSpeed: 5
   _isMoving: 0
+  _currentSpeed: 0
+  _playerMovementSpeed: 5
+  _playerMovementMaxSpeed: 0
 --- !u!114 &4322875896273586003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -242,8 +244,9 @@ MonoBehaviour:
   _isGrounded: 0
   _canJump: 0
   _canDoubleJump: 0
-  _jumpForce: 10
+  _jumpForce: 15
   _doubleJumpForce: 0
+  _jumpBoost: 0
 --- !u!54 &7553321557848297476
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -252,8 +255,8 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5724001473618974185}
   serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 2
+  m_Mass: 2
+  m_Drag: 1
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
