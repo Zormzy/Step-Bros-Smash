@@ -2,12 +2,18 @@ using UnityEngine;
 
 public class PlayerJumpManager : MonoBehaviour
 {
+    [Header("Components")]
     private Rigidbody _rigidbody;
     public Vector2 _playerDirection;
     public Vector3 _playerJumpMovement;
+
+    [Header("Booleen")]
     public bool _isGrounded;
+    private bool _isJumpBtnPressed;
     public bool _canJump;
     public bool _canDoubleJump;
+
+    [Header("Jump force")]
     public float _jumpForce;
     public float _doubleJumpForce;
 
@@ -18,6 +24,7 @@ public class PlayerJumpManager : MonoBehaviour
     [Header("Jump buffer")]
     private float _jumpBufferTime;
     private float _jumpBufferTimeCounter;
+    public float _jumpBoost;
 
     private void Awake()
     {
@@ -57,14 +64,14 @@ public class PlayerJumpManager : MonoBehaviour
 
     private void PlayerJumpVariable()
     {
-        if (_jumpBufferTimeCounter > 0f)
-        {
-            // Todo sauter plus haut tant qu'appuyé
-        }
+        if (_isJumpBtnPressed && _rigidbody.velocity.y > 0f)
+            _rigidbody.AddForce(_playerJumpMovement * _jumpBoost, ForceMode.Force);
     }
 
     public void PlayerJumpBuffer(bool pressed)
     {
+        _isJumpBtnPressed = pressed;
+
         if (pressed)
             _jumpBufferTimeCounter = _jumpBufferTime;
         else
@@ -87,8 +94,10 @@ public class PlayerJumpManager : MonoBehaviour
         _isGrounded = false;
         _canJump = false;
         _canDoubleJump = false;
-        _jumpForce = 10f;
+        _isJumpBtnPressed = false;
+        _jumpForce = 20f;
         _doubleJumpForce = 5f;
+        _jumpBoost = 1.5f;
         _coyoteTime = 0.5f;
         _coyoteTimeCounter = 0f;
         _jumpBufferTime = 0.2f;
@@ -100,6 +109,7 @@ public class PlayerJumpManager : MonoBehaviour
         if (collision.gameObject.CompareTag("Floor"))
         {
             _isGrounded = true;
+            _isJumpBtnPressed = false;
             _canJump = true;
             _canDoubleJump = true;
         }
