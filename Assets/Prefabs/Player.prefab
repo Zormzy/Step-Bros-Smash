@@ -14,6 +14,9 @@ GameObject:
   - component: {fileID: 1107995272025377255}
   - component: {fileID: 4461237067642750180}
   - component: {fileID: 9211100970387530795}
+  - component: {fileID: 2346998130614342608}
+  - component: {fileID: 4322875896273586003}
+  - component: {fileID: 7553321557848297476}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -164,9 +167,29 @@ MonoBehaviour:
     m_ActionId: f467416c-5b5c-4e51-9808-e432e1836c41
     m_ActionName: Gameplay/Parry[/Keyboard/ctrl]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 9211100970387530795}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnJump
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 2b8e7fb4-a190-4be7-8e96-094e3d8dbac2
     m_ActionName: Gameplay/Jump[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: fce61e61-0758-4688-9396-8befbda11dfd
+    m_ActionName: Gameplay/Change team[/Keyboard/f]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 66cb9bd1-9bd5-4f36-8d10-d9f3b4845fc5
+    m_ActionName: Gameplay/Return[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
@@ -184,4 +207,70 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f884417a3b7108b4dbd4c5368e667a11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  _playerMoveManager: {fileID: 2346998130614342608}
+  _playerJumpManager: {fileID: 4322875896273586003}
+--- !u!114 &2346998130614342608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5724001473618974185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72fa3eaf7e5a098458f5ecae8523efd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerMovementDirection: {x: 0, y: 0}
+  _playerMovement: {x: 0, y: 0, z: 0}
+  _isMoving: 0
+  _currentSpeed: 0
+  _playerMovementSpeed: 5
+  _playerMovementMaxSpeed: 0
+--- !u!114 &4322875896273586003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5724001473618974185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad539da44bad9214c90706380fd42e59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerDirection: {x: 0, y: 0}
+  _playerJumpMovement: {x: 0, y: 0, z: 0}
+  _isGrounded: 0
+  _canJump: 0
+  _canDoubleJump: 0
+  _jumpForce: 15
+  _doubleJumpForce: 0
+  _jumpBoost: 0
+--- !u!54 &7553321557848297476
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5724001473618974185}
+  serializedVersion: 4
+  m_Mass: 2
+  m_Drag: 1
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0

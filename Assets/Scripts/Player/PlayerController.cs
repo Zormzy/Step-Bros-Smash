@@ -1,21 +1,31 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 5;
+    [Header("Scripts instances")]
+    [SerializeField] private PlayerMoveManager _playerMoveManager;
+    [SerializeField] private PlayerJumpManager _playerJumpManager;
+
     private Vector2 movementInput;
 
-    void Update()
+    public void OnMove(InputAction.CallbackContext context)
     {
-        transform.Translate(new Vector3(movementInput.x, 0, movementInput.y) * speed * Time.deltaTime);
+        if (movementInput != context.ReadValue<Vector2>())
+            movementInput = context.ReadValue<Vector2>();
+
+        _playerMoveManager._playerMovementDirection = movementInput;
+        _playerMoveManager._isMoving = context.performed;
     }
 
-    public void OnMove(InputAction.CallbackContext ctx)
+    public void OnJump(InputAction.CallbackContext context)
     {
-        movementInput = ctx.ReadValue<Vector2>();
+        _playerJumpManager._playerDirection = movementInput;
+        _playerJumpManager.PlayerJumpBuffer(context.ReadValueAsButton());
     }
-    
+
+    public void OnAttack(InputAction.CallbackContext context)
+    {
+
+    }
 }
