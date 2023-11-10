@@ -7,7 +7,7 @@ public class PlayerMoveManager : MonoBehaviour
     public Vector2 _playerMovementDirection;
     private Vector3 _playerMovement;
 
-    [Header("Booleen")]
+    [Header("Boolean")]
     public bool _isMoving;
     public bool _isParrying;
 

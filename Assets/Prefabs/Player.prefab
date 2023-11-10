@@ -385,8 +385,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerMovementDirection: {x: 0, y: 0}
-  _playerMovement: {x: 0, y: 0, z: 0}
   _isMoving: 0
+  _isParrying: 0
   _currentSpeed: 0
   _playerMovementSpeed: 5
   _playerMovementMaxSpeed: 0
@@ -403,10 +403,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerDirection: {x: 0, y: 0}
-  _playerJumpMovement: {x: 0, y: 0, z: 0}
-  _isGrounded: 0
-  _canJump: 0
-  _canDoubleJump: 0
+  _isParrying: 0
   _jumpForce: 15
   _doubleJumpForce: 0
   _jumpBoost: 0
@@ -438,11 +435,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _parryBall: {fileID: 8074453553613374950}
-  _parryTime: 0
-  _parryTimeCounter: 0
-  _parryRecoveryTime: 0
-  _parryRecoveryTimeCounter: 0
-  _isParryingBtnPressed: 0
   _isParrying: 0
 --- !u!1 &8074453553613374950
 GameObject:
@@ -562,6 +554,7 @@ GameObject:
   - component: {fileID: 6491821755740378054}
   - component: {fileID: 1625299465765574802}
   - component: {fileID: 6612353851551285938}
+  - component: {fileID: 5258213127461741645}
   m_Layer: 0
   m_Name: Arm
   m_TagString: Untagged
@@ -678,7 +671,20 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &5258213127461741645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8360506227279682275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c020f5035601e84f82dcc0cd8ef1c52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isAttacking: 0

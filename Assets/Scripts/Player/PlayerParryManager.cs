@@ -13,7 +13,7 @@ public class PlayerParryManager : MonoBehaviour
     private float _parryRecoveryTime;
     private float _parryRecoveryTimeCounter;
 
-    [Header("Booleen")]
+    [Header("Boolean")]
     private bool _canParry;
     private bool _isParryingBtnPressed;
     public bool _isParrying;
