@@ -124,9 +124,10 @@ GameObject:
   - component: {fileID: 4322875896273586003}
   - component: {fileID: 8486675952397616613}
   - component: {fileID: 1226229047599339708}
+  - component: {fileID: 7027025818403792084}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -421,7 +422,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _arm: {fileID: 8360506227279682275}
   _armRigidbody: {fileID: 6612353851551285938}
-  attackForce: 0
+  _attackForce: 0
 --- !u!114 &1226229047599339708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -436,6 +437,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _parryBall: {fileID: 8074453553613374950}
   _isParrying: 0
+--- !u!114 &7027025818403792084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5724001473618974185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7844f4e20d534441afa165e1015b824, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerID: 0
+  startPos: {x: 0, y: 0, z: 0}
+  life: 0
 --- !u!1 &8074453553613374950
 GameObject:
   m_ObjectHideFlags: 0

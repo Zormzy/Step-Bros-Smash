@@ -13,6 +13,8 @@ public class DeathZone : MonoBehaviour
         {
             other.transform.position = respawnPosition.position;
             other.gameObject.GetComponent<PlayerInfos>().life -= 1;
+
+            Debug.Log(other.gameObject.GetComponent<PlayerInfos>().life);
         }
     }
 }
