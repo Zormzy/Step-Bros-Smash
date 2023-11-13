@@ -20,7 +20,7 @@ GameObject:
   - component: {fileID: -2767047532025064894}
   m_Layer: 0
   m_Name: Player_Alexis
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
