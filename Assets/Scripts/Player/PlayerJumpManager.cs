@@ -5,13 +5,14 @@ public class PlayerJumpManager : MonoBehaviour
     [Header("Components")]
     private Rigidbody _rigidbody;
     public Vector2 _playerDirection;
-    public Vector3 _playerJumpMovement;
+    private Vector3 _playerJumpMovement;
 
     [Header("Booleen")]
-    public bool _isGrounded;
+    private bool _isGrounded;
     private bool _isJumpBtnPressed;
-    public bool _canJump;
-    public bool _canDoubleJump;
+    private bool _canJump;
+    private bool _canDoubleJump;
+    public bool _isParrying;
 
     [Header("Jump force")]
     public float _jumpForce;
@@ -28,7 +29,7 @@ public class PlayerJumpManager : MonoBehaviour
 
     private void Awake()
     {
-        PlayerJumpInitialisation();
+        PlayerJumpInitialization();
     }
 
     private void Update()
@@ -39,9 +40,9 @@ public class PlayerJumpManager : MonoBehaviour
         PlayerJumpVariable();
     }
 
-    public void PlayerJump()
+    private void PlayerJump()
     {
-        if (_canJump && _coyoteTimeCounter > 0f && _jumpBufferTimeCounter > 0f)
+        if (!_isParrying && _canJump && _coyoteTimeCounter > 0f && _jumpBufferTimeCounter > 0f)
         {
             _playerJumpMovement.Set(_playerDirection.x, 1, _playerDirection.y);
             _rigidbody.AddForce(_playerJumpMovement * _jumpForce, ForceMode.Impulse);
@@ -51,9 +52,9 @@ public class PlayerJumpManager : MonoBehaviour
         }
     }
 
-    public void PlayerDoubleJump()
+    private void PlayerDoubleJump()
     {
-        if (!_canJump && _canDoubleJump && _jumpBufferTimeCounter > 0f)
+        if (!_isParrying && !_canJump && _canDoubleJump && _jumpBufferTimeCounter > 0f)
         {
             _playerJumpMovement.Set(_playerDirection.x, 1, _playerDirection.y);
             _rigidbody.AddForce(_playerJumpMovement * _jumpForce, ForceMode.Impulse);
@@ -64,7 +65,7 @@ public class PlayerJumpManager : MonoBehaviour
 
     private void PlayerJumpVariable()
     {
-        if (_isJumpBtnPressed && _rigidbody.velocity.y > 0f)
+        if (!_isParrying && _isJumpBtnPressed && _rigidbody.velocity.y > 0f)
             _rigidbody.AddForce(_playerJumpMovement * _jumpBoost, ForceMode.Force);
     }
 
@@ -72,7 +73,7 @@ public class PlayerJumpManager : MonoBehaviour
     {
         _isJumpBtnPressed = pressed;
 
-        if (pressed)
+        if (!_isParrying && pressed)
             _jumpBufferTimeCounter = _jumpBufferTime;
         else
             _jumpBufferTimeCounter -= Time.deltaTime;
@@ -80,13 +81,13 @@ public class PlayerJumpManager : MonoBehaviour
 
     private void PlayerJumpCoyoteTime()
     {
-        if (_isGrounded)
+        if (!_isParrying && _isGrounded)
             _coyoteTimeCounter = _coyoteTime;
         else
             _coyoteTimeCounter -= Time.deltaTime;
     }
 
-    private void PlayerJumpInitialisation()
+    private void PlayerJumpInitialization()
     {
         _rigidbody = GetComponent<Rigidbody>();
         _playerDirection.Set(0, 0);
@@ -95,6 +96,7 @@ public class PlayerJumpManager : MonoBehaviour
         _canJump = false;
         _canDoubleJump = false;
         _isJumpBtnPressed = false;
+        _isParrying = false;
         _jumpForce = 20f;
         _doubleJumpForce = 5f;
         _jumpBoost = 1.5f;
