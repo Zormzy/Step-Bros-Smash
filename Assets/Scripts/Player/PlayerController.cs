@@ -13,11 +13,13 @@ public class PlayerController : MonoBehaviour
     private string _controllerName;
     private Vector2 movementInput;
     private Vector2 _contextInput;
+    private Vector2 _attackMovementInput;
 
     private void Awake()
     {
         _controllerName = null;
         movementInput = Vector2.right;
+        _attackMovementInput = movementInput;
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -38,6 +40,9 @@ public class PlayerController : MonoBehaviour
                 movementInput = _contextInput;
         }
 
+        if (movementInput != Vector2.zero)
+            _attackMovementInput = movementInput;
+
         _playerMoveManager._playerMovementDirection = movementInput;
         _playerMoveManager._isMoving = context.performed;
     }
@@ -56,7 +61,7 @@ public class PlayerController : MonoBehaviour
         if (_controllerName == null)
             _controllerName = context.control.device.displayName;
 
-        _playerAttackManager.PlayerAttack(movementInput);
+        _playerAttackManager.PlayerAttack(_attackMovementInput);
     }
 
     public void OnParry(InputAction.CallbackContext context)

@@ -31,11 +31,21 @@ public class PlayerMoveManager : MonoBehaviour
 
     public void PlayerMovement()
     {
+        PlayerFlip();
+
         _playerMovement.Set(_playerMovementDirection.x, 0, _playerMovementDirection.y);
         _rigidbody.AddForce(_playerMovement * _playerMovementSpeed, ForceMode.Force);
         
         if (_currentSpeed > _playerMovementMaxSpeed)
             _rigidbody.velocity = Vector3.ClampMagnitude(_rigidbody.velocity, _playerMovementMaxSpeed);
+    }
+
+    private void PlayerFlip()
+    {
+        if (_playerMovementDirection.x < 0 && transform.rotation != Quaternion.Euler(0,180,0))
+            transform.rotation = Quaternion.Euler(0,180,0);
+        else if (_playerMovementDirection.x > 0 && transform.rotation != Quaternion.Euler(0, 0, 0))
+            transform.rotation = Quaternion.Euler(0, 0, 0);
     }
 
     private void PlayerMovementInitialization()
