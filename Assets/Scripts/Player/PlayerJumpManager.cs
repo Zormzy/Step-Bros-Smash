@@ -58,6 +58,7 @@ public class PlayerJumpManager : MonoBehaviour
         {
             _playerJumpMovement.Set(_playerDirection.x, 1, _playerDirection.y);
             _rigidbody.AddForce(_playerJumpMovement * _jumpForce, ForceMode.Impulse);
+            _coyoteTimeCounter = 0f;
             _jumpBufferTimeCounter = 0f;
             _canDoubleJump = false;
         }
@@ -73,7 +74,7 @@ public class PlayerJumpManager : MonoBehaviour
     {
         _isJumpBtnPressed = pressed;
 
-        if (!_isParrying && pressed)
+        if (!_isParrying && pressed && _canJump || !_isParrying && pressed && _canDoubleJump)
             _jumpBufferTimeCounter = _jumpBufferTime;
         else
             _jumpBufferTimeCounter -= Time.deltaTime;
