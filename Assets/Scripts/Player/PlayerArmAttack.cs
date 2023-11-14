@@ -44,6 +44,7 @@ public class PlayerArmAttack : MonoBehaviour
 
         if (other.CompareTag("Player") && !_hasHit)
         {
+            other.gameObject.GetComponent<PlayerController>().OnPlayerStunAction();
             _playerDamage = other.gameObject.GetComponent<PlayerInfos>().damagesPercent += 10;
             other.gameObject.GetComponent<Rigidbody>().AddForce(_attackDirection * (_playerDamage / 10), ForceMode.Impulse);
             _hasHit = true;
