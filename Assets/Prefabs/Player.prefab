@@ -401,7 +401,7 @@ MonoBehaviour:
   _arm: {fileID: 8360506227279682275}
   _armRigidbody: {fileID: 6612353851551285938}
   _attackForce: 0
-  armCollider: {fileID: 0}
+  _isParrying: 0
 --- !u!114 &1226229047599339708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -447,11 +447,11 @@ GameObject:
   - component: {fileID: 3534545834019961163}
   m_Layer: 0
   m_Name: ParryBall
-  m_TagString: Untagged
+  m_TagString: Parry
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5745094158672137177
 Transform:
   m_ObjectHideFlags: 0
@@ -685,4 +685,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isAttacking: 0
-  respawnPosition: {fileID: 7583393373039580695}
+  _attackDirection: {x: 0, y: 0}
+  _hasHit: 0

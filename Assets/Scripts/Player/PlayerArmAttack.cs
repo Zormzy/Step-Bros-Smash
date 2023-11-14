@@ -39,6 +39,9 @@ public class PlayerArmAttack : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.CompareTag("Parry") && !_hasHit)
+            _hasHit = true;
+
         if (other.CompareTag("Player") && !_hasHit)
         {
             _playerDamage = other.gameObject.GetComponent<PlayerInfos>().damagesPercent += 10;
