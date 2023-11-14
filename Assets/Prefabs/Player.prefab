@@ -352,6 +352,7 @@ MonoBehaviour:
   _playerJumpManager: {fileID: 4322875896273586003}
   _playerAttackManager: {fileID: 8486675952397616613}
   _playerParryManager: {fileID: 1226229047599339708}
+  _playerInput: {fileID: 4461237067642750180}
 --- !u!114 &2346998130614342608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -402,8 +403,8 @@ MonoBehaviour:
   _arm: {fileID: 8360506227279682275}
   _armRigidbody: {fileID: 6612353851551285938}
   _attackForce: 0
-  armPositionOnBody: {fileID: 5894919433755794815}
   _isParrying: 0
+  armPositionOnBody: {fileID: 5894919433755794815}
 --- !u!114 &1226229047599339708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -417,7 +418,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _parryBall: {fileID: 8074453553613374950}
-  _isParrying: 0
 --- !u!114 &7027025818403792084
 MonoBehaviour:
   m_ObjectHideFlags: 0
