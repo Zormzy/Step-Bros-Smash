@@ -40,6 +40,8 @@ public class PlayerController : MonoBehaviour
             _contextInput.Set(1, 0);
         else if (context.ReadValue<Vector2>().x < -0.2f)
             _contextInput.Set(-1, 0);
+        else
+            _contextInput.Set(0,0);
 
         if (movementInput != _contextInput)
             movementInput = _contextInput;
