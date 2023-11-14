@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class VictoryManager : MonoBehaviour
 {
@@ -22,5 +23,10 @@ public class VictoryManager : MonoBehaviour
             playerWinID = playerAlive[0].playerID;
             victoryPanel.SetActive(true);
         }
+    }
+
+    public void VictoryMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 }
