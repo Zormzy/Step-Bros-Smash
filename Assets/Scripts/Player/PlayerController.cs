@@ -10,35 +10,29 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private PlayerParryManager _playerParryManager;
 
     [Header("Controller values")]
-    private string _controllerName;
     private Vector2 movementInput;
     private Vector2 _contextInput;
     private Vector2 _attackMovementInput;
+    private bool _downMovementBtn;
 
     private void Awake()
     {
-        _controllerName = null;
+        _downMovementBtn = false;
         movementInput = Vector2.right;
         _attackMovementInput = movementInput;
     }
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        if (_controllerName == null)
-            _controllerName = context.control.device.displayName;
+        _contextInput.Set(context.ReadValue<Vector2>().x, 0);
 
-        if (_controllerName == "Keyboard")
-        {
-            if (movementInput != context.ReadValue<Vector2>())
-                movementInput = context.ReadValue<Vector2>();
-        }
+        if (movementInput != _contextInput)
+            movementInput = _contextInput;
+
+        if (context.ReadValue<Vector2>().y == -1)
+            _downMovementBtn = true;
         else
-        {
-            _contextInput.Set(context.ReadValue<Vector2>().x, 0);
-
-            if (movementInput != _contextInput)
-                movementInput = _contextInput;
-        }
+            _downMovementBtn = false;
 
         if (movementInput != Vector2.zero)
             _attackMovementInput = movementInput;
@@ -49,26 +43,23 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (_controllerName == null)
-            _controllerName = context.control.device.displayName;
-
         _playerJumpManager._playerDirection = movementInput;
         _playerJumpManager.PlayerJumpBuffer(context.ReadValueAsButton());
     }
 
     public void OnAttack(InputAction.CallbackContext context)
     {
-        if (_controllerName == null)
-            _controllerName = context.control.device.displayName;
-
-        _playerAttackManager.PlayerAttack(_attackMovementInput);
+        if (context.performed)
+        {
+            if (_downMovementBtn)
+                _playerAttackManager.PlayerAttackDown();
+            else
+                _playerAttackManager.PlayerAttackNormal(_attackMovementInput);
+        }
     }
 
     public void OnParry(InputAction.CallbackContext context)
     {
-        if (_controllerName == null)
-            _controllerName = context.control.device.displayName;
-
         _playerParryManager.PlayerParry(context.ReadValueAsButton());
     }
 }

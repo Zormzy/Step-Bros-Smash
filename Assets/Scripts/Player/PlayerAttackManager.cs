@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class PlayerAttackManager : MonoBehaviour
 {
-    //TODO activer/ desactiver le collider du bras quand on attaque pour check la collision que a ce moment
     [Header("Components")]
     [SerializeField] private GameObject _arm;
     [SerializeField] private Rigidbody _armRigidbody;
     private PlayerArmAttack _playerArmAttack;
+    private BoxCollider _armCollider;
 
     [Header("Attack variables")]
     private Vector3 _armPosition;
@@ -14,9 +14,6 @@ public class PlayerAttackManager : MonoBehaviour
     private bool _isAttacking;
     private bool _isArmBackPosition;
     public float _attackForce;
-
-
-    public BoxCollider armCollider;
 
     private void Awake() 
     {
@@ -29,14 +26,27 @@ public class PlayerAttackManager : MonoBehaviour
             PlayerArmMovement();
     }
 
-    public void PlayerAttack(Vector2 _direction)
+    public void PlayerAttackNormal(Vector2 _direction)
     {
         _armPosition = _arm.transform.position;
         _armTargetPosition.Set(_armPosition.x + _direction.x, _armPosition.y, _armPosition.z);
         _isAttacking = true;
         _isArmBackPosition = false;
         _playerArmAttack._isAttacking = true;
-        armCollider.enabled = true;
+        _playerArmAttack._attackDirection = _direction;
+        _armCollider.enabled = true;
+    }
+
+    public void PlayerAttackDown()
+    {
+        _arm.transform.rotation = Quaternion.Euler(0,0,-90);
+        _armPosition = _arm.transform.position;
+        _armTargetPosition.Set(_armPosition.x, _armPosition.y - 1, _armPosition.z);
+        _isAttacking = true;
+        _isArmBackPosition = false;
+        _playerArmAttack._isAttacking = true;
+        _playerArmAttack._attackDirection = Vector2.down;
+        _armCollider.enabled = true;
     }
 
     private void PlayerArmMovement()
@@ -51,7 +61,12 @@ public class PlayerAttackManager : MonoBehaviour
             if (!_isArmBackPosition)
                 _arm.transform.position = Vector3.MoveTowards(_arm.transform.position, _armPosition, _attackForce);
 
+            if (_arm.transform.rotation == Quaternion.Euler(0, 0, -90))
+                _arm.transform.rotation = Quaternion.Euler(0, 0, 0);
+
             _isArmBackPosition = true;
+            _armCollider.enabled = false;
+            _playerArmAttack._hasHit = false;
         }
     }
 
@@ -59,7 +74,7 @@ public class PlayerAttackManager : MonoBehaviour
     {
         _armRigidbody = _arm.GetComponent<Rigidbody>();
         _playerArmAttack = _arm.GetComponent<PlayerArmAttack>();
-        armCollider = _arm.GetComponentInChildren<BoxCollider>();
+        _armCollider = _arm.GetComponentInChildren<BoxCollider>();
         _attackForce = 2f;
         _isAttacking = false;
         _isArmBackPosition = true;
