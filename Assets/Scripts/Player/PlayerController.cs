@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         _downMovementBtn = false;
-        movementInput = Vector2.right;
+        movementInput = Vector2.zero;
         _attackMovementInput = movementInput;
     }
 

@@ -44,7 +44,11 @@ public class PlayerJumpManager : MonoBehaviour
     {
         if (!_isParrying && _canJump && _coyoteTimeCounter > 0f && _jumpBufferTimeCounter > 0f)
         {
-            _playerJumpMovement.Set(_playerDirection.x, 1, _playerDirection.y);
+            if (_playerDirection.x != 0f)
+                _playerJumpMovement.Set(_playerDirection.x, 1.5f, _playerDirection.y);
+            else
+                _playerJumpMovement.Set(_playerDirection.x, 1f, _playerDirection.y);
+
             _rigidbody.AddForce(_playerJumpMovement * _jumpForce, ForceMode.Impulse);
             _coyoteTimeCounter = 0f;
             _jumpBufferTimeCounter = 0f;
