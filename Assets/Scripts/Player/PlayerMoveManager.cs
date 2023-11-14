@@ -57,7 +57,7 @@ public class PlayerMoveManager : MonoBehaviour
         _currentSpeed = _rigidbody.velocity.magnitude;
         _playerMovementSpeed = 15f;
         _playerMovementMaxSpeed = 10f;
-        _pushbackForce = 3f;
+        _pushbackForce = 10f;
         _isMoving = false;
         _isParrying = false;
     }
