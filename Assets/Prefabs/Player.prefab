@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 1214150543252482417}
   - component: {fileID: 4520357450773507824}
   - component: {fileID: 1376889889157051388}
-  - component: {fileID: 4618507535243860095}
   m_Layer: 0
   m_Name: Eyes
   m_TagString: Untagged
@@ -84,27 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &4618507535243860095
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3431005571045769166}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5724001473618974185
 GameObject:
   m_ObjectHideFlags: 0
@@ -423,6 +401,7 @@ MonoBehaviour:
   _arm: {fileID: 8360506227279682275}
   _armRigidbody: {fileID: 6612353851551285938}
   _attackForce: 0
+  armCollider: {fileID: 0}
 --- !u!114 &1226229047599339708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -452,6 +431,7 @@ MonoBehaviour:
   playerID: 0
   startPos: {x: 0, y: 0, z: 0}
   life: 0
+  damagesPercent: 0
 --- !u!1 &8074453553613374950
 GameObject:
   m_ObjectHideFlags: 0
@@ -658,12 +638,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.289726, y: 1, z: 6.0886526}
+  m_Center: {x: 1.0796257, y: 0, z: 2.5443244}
 --- !u!54 &6612353851551285938
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -704,3 +684,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isAttacking: 0
+  respawnPosition: {fileID: 7583393373039580695}
