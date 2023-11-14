@@ -27,6 +27,12 @@ public class VictoryManager : MonoBehaviour
 
     public void VictoryMainMenu()
     {
-        SceneManager.LoadScene("MainMenu");
+        Debug.Log("MainMenu");
+        //SceneManager.LoadScene("MainMenu");
+    }
+
+    public void Rematch()
+    {
+        SceneManager.LoadScene("Level_1");
     }
 }
