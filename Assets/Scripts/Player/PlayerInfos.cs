@@ -16,16 +16,8 @@ public class PlayerInfos : MonoBehaviour
         life = 3;
     }
 
-    private void Update()
+    public void ResetDamages()
     {
-        if(life <= 0)
-        {
-            Death();
-        }
-    }
-
-    void Death()
-    {
-
+        damagesPercent = 0;
     }
 }

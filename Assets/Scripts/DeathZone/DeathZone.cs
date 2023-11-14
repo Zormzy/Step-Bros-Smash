@@ -14,6 +14,8 @@ public class DeathZone : MonoBehaviour
         {
             other.transform.position = respawnPosition.position;
             other.gameObject.GetComponent<PlayerInfos>().life -= 1;
+            other.gameObject.GetComponent<PlayerInfos>().ResetDamages();
+
             if(other.gameObject.GetComponent<PlayerInfos>().life <= 0)
             {
                 victoryManager.playerAlive.Remove(other.gameObject.GetComponent<PlayerInfos>());
@@ -22,8 +24,6 @@ public class DeathZone : MonoBehaviour
                 //bloquer le controller pour ne pas pouvoir respawn
                 //other.gameObject.GetComponent<PlayerInput>().DeactivateInput();
             }
-
-            Debug.Log(other.gameObject.GetComponent<PlayerInfos>().life);
         }
     }
 }

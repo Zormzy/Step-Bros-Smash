@@ -22,10 +22,15 @@ public class UiManager : MonoBehaviour
     [SerializeField] private float p3Damages;
     [SerializeField] private float p4Damages;
 
-    public TMP_Text P1DamagesPercent;
-    public TMP_Text P2DamagesPercent;
-    public TMP_Text P3DamagesPercent;
-    public TMP_Text P4DamagesPercent;
+    public TMP_Text p1DamagesPercent;
+    public TMP_Text p2DamagesPercent;
+    public TMP_Text p3DamagesPercent;
+    public TMP_Text p4DamagesPercent;
+
+    public TMP_Text p1Life;
+    public TMP_Text p2Life;
+    public TMP_Text p3Life;
+    public TMP_Text p4Life;
 
     public PlayerInfos[] playerInfos;
     public bool newPlayerJoined;
@@ -56,35 +61,37 @@ public class UiManager : MonoBehaviour
                 case 1:
                     p1UI.SetActive(true);
 
+                    p1Life.text = "Life: " + player.life;
                     p1Damages = player.damagesPercent;
                     player1Name.text = "Player" + player.playerID + "  Team " + player.team;
                     break;
                 case 2:
                     p2UI.SetActive(true);
 
+                    p2Life.text = "Life: " + player.life;
                     p2Damages = player.damagesPercent;
                     player2Name.text = "Player" + player.playerID + "  Team " + player.team;
                     break;
                 case 3:
                     p3UI.SetActive(true);
 
+                    p3Life.text = "Life: " + player.life;
                     p3Damages = player.damagesPercent;
                     player3Name.text = "Player" + player.playerID + "  Team " + player.team;
                     break;
                 case 4:
                     p4UI.SetActive(true);
 
+                    p4Life.text = "Life: " + player.life;
                     p4Damages = player.damagesPercent;
                     player4Name.text = "Player" + player.playerID + "  Team " + player.team;
                     break;
             }
         }
 
-        P1DamagesPercent.text = p1Damages + "%";
-        P2DamagesPercent.text = p2Damages + "%";
-        P3DamagesPercent.text = p3Damages + "%";
-        P4DamagesPercent.text = p4Damages + "%";
-
-        
+        p1DamagesPercent.text = p1Damages + "%";
+        p2DamagesPercent.text = p2Damages + "%";
+        p3DamagesPercent.text = p3Damages + "%";
+        p4DamagesPercent.text = p4Damages + "%";
     }
 }
