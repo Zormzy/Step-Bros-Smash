@@ -5,6 +5,7 @@ public class PlayerParryManager : MonoBehaviour
     [Header("Components")]
     private PlayerMoveManager _playerMoveManager;
     private PlayerJumpManager _playerJumpManager;
+    private PlayerAttackManager _playerAttackManager;
     [SerializeField] private GameObject _parryBall;
 
     [Header("Parry variables")]
@@ -16,7 +17,7 @@ public class PlayerParryManager : MonoBehaviour
     [Header("Boolean")]
     private bool _canParry;
     private bool _isParryingBtnPressed;
-    public bool _isParrying;
+    private bool _isParrying;
 
     private void Awake()
     {
@@ -42,6 +43,7 @@ public class PlayerParryManager : MonoBehaviour
             _isParrying = true;
             _playerMoveManager._isParrying = true;
             _playerJumpManager._isParrying = true;
+            _playerAttackManager._isParrying = true;
         }
         else
         {
@@ -49,6 +51,7 @@ public class PlayerParryManager : MonoBehaviour
             _isParrying = false;
             _playerMoveManager._isParrying = false;
             _playerJumpManager._isParrying = false;
+            _playerAttackManager._isParrying = false;
         }
     }
 
@@ -65,7 +68,7 @@ public class PlayerParryManager : MonoBehaviour
             _parryRecoveryTimeCounter -= Time.deltaTime;
         }
 
-        if (_parryTimeCounter <= 0)
+        if (_parryTimeCounter <= 0 || _isParrying && !_isParryingBtnPressed)
             _canParry = false;
         else if (_parryRecoveryTimeCounter <= 0)
             _canParry = true;
@@ -75,6 +78,7 @@ public class PlayerParryManager : MonoBehaviour
     {
         _playerMoveManager = GetComponent<PlayerMoveManager>();
         _playerJumpManager = GetComponent<PlayerJumpManager>();
+        _playerAttackManager = GetComponent<PlayerAttackManager>();
         _parryTime = 3f;
         _parryTimeCounter = 3f;
         _parryRecoveryTime = 3f;
