@@ -14,6 +14,7 @@ public class PlayerAttackManager : MonoBehaviour
     private bool _isAttacking;
     private bool _isArmBackPosition;
     public float _attackForce;
+    public bool _isParrying;
 
     [SerializeField] private GameObject armPositionOnBody;
 
@@ -30,25 +31,31 @@ public class PlayerAttackManager : MonoBehaviour
 
     public void PlayerAttackNormal(Vector2 _direction)
     {
-        _armPosition = _arm.transform.position;
-        _armTargetPosition.Set(_armPosition.x + _direction.x, _armPosition.y, _armPosition.z);
-        _isAttacking = true;
-        _isArmBackPosition = false;
-        _playerArmAttack._isAttacking = true;
-        _playerArmAttack._attackDirection = _direction;
-        _armCollider.enabled = true;
+        if (!_isParrying)
+        {
+            _armPosition = _arm.transform.position;
+            _armTargetPosition.Set(_armPosition.x + _direction.x, _armPosition.y, _armPosition.z);
+            _isAttacking = true;
+            _isArmBackPosition = false;
+            _playerArmAttack._isAttacking = true;
+            _playerArmAttack._attackDirection = _direction;
+            _armCollider.enabled = true;
+        }
     }
 
     public void PlayerAttackDown()
     {
-        _arm.transform.rotation = Quaternion.Euler(0,0,-90);
-        _armPosition = _arm.transform.position;
-        _armTargetPosition.Set(_armPosition.x, _armPosition.y - 1, _armPosition.z);
-        _isAttacking = true;
-        _isArmBackPosition = false;
-        _playerArmAttack._isAttacking = true;
-        _playerArmAttack._attackDirection = Vector2.down;
-        _armCollider.enabled = true;
+        if (!_isParrying)
+        {
+            _arm.transform.rotation = Quaternion.Euler(0, 0, -90);
+            _armPosition = _arm.transform.position;
+            _armTargetPosition.Set(_armPosition.x, _armPosition.y - 1, _armPosition.z);
+            _isAttacking = true;
+            _isArmBackPosition = false;
+            _playerArmAttack._isAttacking = true;
+            _playerArmAttack._attackDirection = Vector2.down;
+            _armCollider.enabled = true;
+        }
     }
 
     private void PlayerArmMovement()
@@ -79,6 +86,7 @@ public class PlayerAttackManager : MonoBehaviour
         _armCollider = _arm.GetComponentInChildren<BoxCollider>();
         _attackForce = 2f;
         _isAttacking = false;
+        _isParrying = false;
         _isArmBackPosition = true;
     }
 }
