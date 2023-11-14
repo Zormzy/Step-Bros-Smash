@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerArmAttack : MonoBehaviour
 {
@@ -31,14 +32,14 @@ public class PlayerArmAttack : MonoBehaviour
         _isAttacking = false;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    [SerializeField] Transform respawnPosition;
+
+    private void OnTriggerEnter(Collider other)
     {
-        if (_isAttacking)
+        if (other.CompareTag("Player"))
         {
-            if (collision.collider.gameObject.CompareTag("Player"))
-            {
-                Debug.Log("hit player");
-            }
+            other.gameObject.GetComponent<PlayerInfos>().damagesPercent += 10;
+            Debug.Log("PlayerTouché: " + other.gameObject.GetComponent<PlayerInfos>().playerID + "   " + other.gameObject.GetComponent<PlayerInfos>().damagesPercent + "%");
         }
     }
 }
