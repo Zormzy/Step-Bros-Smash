@@ -3,7 +3,7 @@ using UnityEngine;
 public class OneWayPlateform : MonoBehaviour
 {
     [SerializeField] private Vector3 entryDirection = Vector3.up;
-    [SerializeField] private float penetrationDepthNeeded = 0.2f;
+    [SerializeField] private float penetrationDepthNeeded;
 
     private BoxCollider boxCollider;
     private BoxCollider checkCollision;
@@ -15,7 +15,7 @@ public class OneWayPlateform : MonoBehaviour
         boxCollider = GetComponent<BoxCollider>();
 
         checkCollision = gameObject.AddComponent<BoxCollider>();
-        checkCollision.size = new Vector3(boxCollider.size.x * 1.25f, boxCollider.size.y * 1.25f, boxCollider.size.z * 1.25f);
+        checkCollision.size = new Vector3(boxCollider.size.x * 1.5f, boxCollider.size.y * 1.5f, boxCollider.size.z * 1.5f);
         checkCollision.center = boxCollider.center;
         checkCollision.isTrigger = true;
     }

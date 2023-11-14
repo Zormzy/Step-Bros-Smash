@@ -126,6 +126,7 @@ Transform:
   - {fileID: 1214150543252482417}
   - {fileID: 7583393373039580695}
   - {fileID: 5745094158672137177}
+  - {fileID: 2750387951191842043}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1712213022319788000
@@ -401,7 +402,7 @@ MonoBehaviour:
   _arm: {fileID: 8360506227279682275}
   _armRigidbody: {fileID: 6612353851551285938}
   _attackForce: 0
-  armCollider: {fileID: 0}
+  armPositionOnBody: {fileID: 5894919433755794815}
 --- !u!114 &1226229047599339708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -433,6 +434,37 @@ MonoBehaviour:
   life: 0
   damagesPercent: 0
   team: 0
+--- !u!1 &5894919433755794815
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2750387951191842043}
+  m_Layer: 0
+  m_Name: ArmPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2750387951191842043
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5894919433755794815}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.15, y: 0.1, z: -0.6}
+  m_LocalScale: {x: 1, y: 0.2, z: 0.2}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9051349421080852132}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8074453553613374950
 GameObject:
   m_ObjectHideFlags: 0
@@ -685,4 +717,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isAttacking: 0
-  respawnPosition: {fileID: 7583393373039580695}
+  _attackDirection: {x: 0, y: 0}
+  _hasHit: 0

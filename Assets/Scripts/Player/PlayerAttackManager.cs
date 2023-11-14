@@ -15,6 +15,8 @@ public class PlayerAttackManager : MonoBehaviour
     private bool _isArmBackPosition;
     public float _attackForce;
 
+    [SerializeField] private GameObject armPositionOnBody;
+
     private void Awake() 
     {
         PlayerAttackInitialization();
@@ -59,7 +61,7 @@ public class PlayerAttackManager : MonoBehaviour
         else
         {
             if (!_isArmBackPosition)
-                _arm.transform.position = Vector3.MoveTowards(_arm.transform.position, _armPosition, _attackForce);
+                _arm.transform.position = Vector3.MoveTowards(_arm.transform.position, armPositionOnBody.transform.position, _attackForce);
 
             if (_arm.transform.rotation == Quaternion.Euler(0, 0, -90))
                 _arm.transform.rotation = Quaternion.Euler(0, 0, 0);
