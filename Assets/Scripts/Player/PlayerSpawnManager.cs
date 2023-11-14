@@ -7,6 +7,7 @@ public class PlayerSpawnManager : MonoBehaviour
 {
     public Transform[] spawnPositions;
     public UiManager uiManager;
+    public VictoryManager victoryManager;
 
     void OnPlayerJoined(PlayerInput playerInput)
     {
@@ -14,5 +15,7 @@ public class PlayerSpawnManager : MonoBehaviour
         playerInput.gameObject.GetComponent<PlayerInfos>().team = playerInput.playerIndex + 1; //a suppr en créant les menus
         playerInput.gameObject.GetComponent<PlayerInfos>().startPos = spawnPositions[playerInput.playerIndex].position;
         uiManager.newPlayerJoined = true;
+
+        victoryManager.playerAlive.Add(playerInput.gameObject.GetComponent<PlayerInfos>());
     }
 }

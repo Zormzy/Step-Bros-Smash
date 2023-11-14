@@ -15,4 +15,17 @@ public class PlayerInfos : MonoBehaviour
         transform.position = startPos;
         life = 3;
     }
+
+    private void Update()
+    {
+        if(life <= 0)
+        {
+            Death();
+        }
+    }
+
+    void Death()
+    {
+
+    }
 }

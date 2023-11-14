@@ -27,7 +27,7 @@ public class UiManager : MonoBehaviour
     public TMP_Text P3DamagesPercent;
     public TMP_Text P4DamagesPercent;
 
-    private PlayerInfos[] playerInfos;
+    public PlayerInfos[] playerInfos;
     public bool newPlayerJoined;
 
     [SerializeField] private GameObject p1UI;
