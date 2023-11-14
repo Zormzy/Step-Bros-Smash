@@ -408,7 +408,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &175815374
 RectTransform:
   m_ObjectHideFlags: 0
@@ -474,7 +474,7 @@ GameObject:
   - component: {fileID: 325321533}
   - component: {fileID: 325321532}
   m_Layer: 5
-  m_Name: 'Player1: Team x'
+  m_Name: 'Player2: Team x'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -866,7 +866,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &527699181
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1106,7 +1106,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &780307798
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1458,7 +1458,7 @@ GameObject:
   - component: {fileID: 901726902}
   - component: {fileID: 901726901}
   m_Layer: 5
-  m_Name: 'Player1: Team x'
+  m_Name: 'Player3: Team x'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1676,16 +1676,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55e1270d92c17e14f96a096b6c61362c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iconCharacters: []
-  playersName: []
-  P1DamagesPercent: {fileID: 12725112}
-  P2DamagesPercent: {fileID: 1551984837}
-  P3DamagesPercent: {fileID: 800827737}
-  P4DamagesPercent: {fileID: 714210997}
+  iconCharacter1: {fileID: 1557400105}
+  iconCharacter2: {fileID: 1828738801}
+  iconCharacter3: {fileID: 1903295846}
+  iconCharacter4: {fileID: 1641331653}
+  player1Name: {fileID: 856462729}
+  player2Name: {fileID: 325321532}
+  player3Name: {fileID: 901726901}
+  player4Name: {fileID: 1910335589}
   p1Damages: 0
   p2Damages: 0
   p3Damages: 0
   p4Damages: 0
+  P1DamagesPercent: {fileID: 12725112}
+  P2DamagesPercent: {fileID: 1551984837}
+  P3DamagesPercent: {fileID: 800827737}
+  P4DamagesPercent: {fileID: 714210997}
+  newPlayerJoined: 0
+  p1UI: {fileID: 527699180}
+  p2UI: {fileID: 1473418815}
+  p3UI: {fileID: 780307797}
+  p4UI: {fileID: 175815373}
 --- !u!4 &1451373301
 Transform:
   m_ObjectHideFlags: 0
@@ -1716,7 +1727,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1473418816
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1885,7 +1896,7 @@ GameObject:
   - component: {fileID: 1557400106}
   - component: {fileID: 1557400105}
   m_Layer: 5
-  m_Name: ImageCharacter
+  m_Name: ImageCharacter1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1960,7 +1971,7 @@ GameObject:
   - component: {fileID: 1641331654}
   - component: {fileID: 1641331653}
   m_Layer: 5
-  m_Name: ImageCharacter
+  m_Name: ImageCharacter4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2118,6 +2129,7 @@ MonoBehaviour:
   - {fileID: 1275879472}
   - {fileID: 92996831}
   - {fileID: 239927189}
+  uiManager: {fileID: 1451373300}
 --- !u!1 &1751774188
 GameObject:
   m_ObjectHideFlags: 0
@@ -2297,7 +2309,7 @@ GameObject:
   - component: {fileID: 1828738802}
   - component: {fileID: 1828738801}
   m_Layer: 5
-  m_Name: ImageCharacter
+  m_Name: ImageCharacter2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2372,7 +2384,7 @@ GameObject:
   - component: {fileID: 1903295847}
   - component: {fileID: 1903295846}
   m_Layer: 5
-  m_Name: 'ImageCharacter '
+  m_Name: ImageCharacter3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2447,7 +2459,7 @@ GameObject:
   - component: {fileID: 1910335590}
   - component: {fileID: 1910335589}
   m_Layer: 5
-  m_Name: 'Player1: Team x'
+  m_Name: 'Player4: Team x'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
