@@ -15,6 +15,7 @@ public class PlayerMoveManager : MonoBehaviour
     public float _currentSpeed;
     public float _playerMovementSpeed;
     public float _playerMovementMaxSpeed;
+    public float _pushbackForce;
 
     private void Awake()
     {
@@ -35,15 +36,15 @@ public class PlayerMoveManager : MonoBehaviour
 
         _playerMovement.Set(_playerMovementDirection.x, 0, _playerMovementDirection.y);
         _rigidbody.AddForce(_playerMovement * _playerMovementSpeed, ForceMode.Force);
-        
+
         if (_currentSpeed > _playerMovementMaxSpeed)
             _rigidbody.velocity = Vector3.ClampMagnitude(_rigidbody.velocity, _playerMovementMaxSpeed);
     }
 
     private void PlayerFlip()
     {
-        if (_playerMovementDirection.x < 0 && transform.rotation != Quaternion.Euler(0,180,0))
-            transform.rotation = Quaternion.Euler(0,180,0);
+        if (_playerMovementDirection.x < 0 && transform.rotation != Quaternion.Euler(0, 180, 0))
+            transform.rotation = Quaternion.Euler(0, 180, 0);
         else if (_playerMovementDirection.x > 0 && transform.rotation != Quaternion.Euler(0, 0, 0))
             transform.rotation = Quaternion.Euler(0, 0, 0);
     }
@@ -56,12 +57,19 @@ public class PlayerMoveManager : MonoBehaviour
         _currentSpeed = _rigidbody.velocity.magnitude;
         _playerMovementSpeed = 15f;
         _playerMovementMaxSpeed = 10f;
+        _pushbackForce = 3f;
         _isMoving = false;
         _isParrying = false;
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            if (collision.gameObject.transform.position.x < transform.position.x)
+                _rigidbody.AddForce(Vector2.right * _pushbackForce, ForceMode.Impulse);
+            else
+                _rigidbody.AddForce(Vector2.left * _pushbackForce, ForceMode.Impulse);
+        }
     }
 }
