@@ -8,6 +8,7 @@ public class PlayerInfos : MonoBehaviour
     public Vector3 startPos;
     public int life;
     public float damagesPercent;
+    public int team;
 
     void Start()
     {
@@ -15,5 +16,16 @@ public class PlayerInfos : MonoBehaviour
         life = 3;
     }
 
-    
+    private void Update()
+    {
+        if(life <= 0)
+        {
+            Death();
+        }
+    }
+
+    void Death()
+    {
+
+    }
 }

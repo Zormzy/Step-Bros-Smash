@@ -432,6 +432,7 @@ MonoBehaviour:
   startPos: {x: 0, y: 0, z: 0}
   life: 0
   damagesPercent: 0
+  team: 0
 --- !u!1 &8074453553613374950
 GameObject:
   m_ObjectHideFlags: 0
