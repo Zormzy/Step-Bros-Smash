@@ -36,7 +36,10 @@ public class PlayerController : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        _contextInput.Set(context.ReadValue<Vector2>().x, 0);
+        if (context.ReadValue<Vector2>().x > 0.2f)
+            _contextInput.Set(1, 0);
+        else if (context.ReadValue<Vector2>().x < -0.2f)
+            _contextInput.Set(-1, 0);
 
         if (movementInput != _contextInput)
             movementInput = _contextInput;
