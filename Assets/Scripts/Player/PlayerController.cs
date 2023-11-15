@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private PlayerJumpManager _playerJumpManager;
     [SerializeField] private PlayerAttackManager _playerAttackManager;
     [SerializeField] private PlayerParryManager _playerParryManager;
+    [SerializeField] private PlayerAnimatorController _playerAnimatorController;
     [SerializeField] private PlayerInput _playerInput;
 
     [Header("Controller values")]
@@ -37,11 +38,20 @@ public class PlayerController : MonoBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
         if (context.ReadValue<Vector2>().x > 0.2f)
+        {
             _contextInput.Set(1, 0);
+            _playerAnimatorController.AnimatorOnMove(true);
+        }
         else if (context.ReadValue<Vector2>().x < -0.2f)
+        {
             _contextInput.Set(-1, 0);
+            _playerAnimatorController.AnimatorOnMove(true);
+        }
         else
+        {
             _contextInput.Set(0,0);
+            _playerAnimatorController.AnimatorOnMove(false);
+        }
 
         if (movementInput != _contextInput)
             movementInput = _contextInput;
@@ -62,12 +72,17 @@ public class PlayerController : MonoBehaviour
     {
         _playerJumpManager._playerDirection = movementInput;
         _playerJumpManager.PlayerJumpBuffer(context.ReadValueAsButton());
+        
+        if (context.canceled)
+            _playerAnimatorController.AnimatorOnJump(false);
     }
 
     public void OnAttack(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
+            _playerAnimatorController.AnimatorOnAttack();
+
             if (_downMovementBtn)
                 _playerAttackManager.PlayerAttackDown();
             else
@@ -78,6 +93,7 @@ public class PlayerController : MonoBehaviour
     public void OnParry(InputAction.CallbackContext context)
     {
         _playerParryManager.PlayerParry(context.ReadValueAsButton());
+        _playerAnimatorController.AnimatorOnDefend(context.ReadValueAsButton());
     }
 
     private void OnPlayerStun()
