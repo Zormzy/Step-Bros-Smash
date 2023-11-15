@@ -9,10 +9,12 @@ public class MapChoiceManager : MonoBehaviour
     public void Map1()
     {
         chosenMap = 1;
+        SceneManager.LoadScene("CharacterChoice");
     }
 
     public void Map2()
     {
         chosenMap = 2;
+        SceneManager.LoadScene("CharacterChoice");
     }
 }
