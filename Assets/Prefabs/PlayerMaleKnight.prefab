@@ -26796,6 +26796,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _parryBall: {fileID: 3459572702121971125}
+  _playerAnimatorController: {fileID: 7373748895969362478}
 --- !u!114 &4930975442829828279
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -7,6 +7,7 @@ public class PlayerParryManager : MonoBehaviour
     private PlayerJumpManager _playerJumpManager;
     private PlayerAttackManager _playerAttackManager;
     [SerializeField] private GameObject _parryBall;
+    [SerializeField] private PlayerAnimatorController _playerAnimatorController;
 
     [Header("Parry variables")]
     private float _parryTime;
@@ -48,6 +49,7 @@ public class PlayerParryManager : MonoBehaviour
         else
         {
             _parryBall.SetActive(false);
+            _playerAnimatorController.AnimatorOnDefend(false);
             _isParrying = false;
             _playerMoveManager._isParrying = false;
             _playerJumpManager._isParrying = false;
