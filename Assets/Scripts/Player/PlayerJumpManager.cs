@@ -5,6 +5,8 @@ public class PlayerJumpManager : MonoBehaviour
     [Header("Components")]
     private Rigidbody _rigidbody;
     private PlayerAnimatorController _playerAnimatorController;
+    [SerializeField] private ParticleSystem _jumpParticule;
+    [SerializeField] private ParticleSystem _doubleJumpParticule;
     public Vector2 _playerDirection;
     private Vector3 _playerJumpMovement;
 
@@ -51,6 +53,7 @@ public class PlayerJumpManager : MonoBehaviour
                 _playerJumpMovement.Set(_playerDirection.x, 1f, _playerDirection.y);
 
             _playerAnimatorController.AnimatorOnJump(true);
+            _jumpParticule.Play();
             _playerAnimatorController._isGrounded = false;
             _rigidbody.AddForce(_playerJumpMovement * _jumpForce, ForceMode.Impulse);
             _coyoteTimeCounter = 0f;
@@ -64,6 +67,7 @@ public class PlayerJumpManager : MonoBehaviour
         if (!_isParrying && !_canJump && _canDoubleJump && _jumpBufferTimeCounter > 0f)
         {
             _playerJumpMovement.Set(_playerDirection.x, 1, _playerDirection.y);
+            _doubleJumpParticule.Play();
             _playerAnimatorController.AnimatorOnDoubleJump();
             _rigidbody.AddForce(_playerJumpMovement * _jumpForce, ForceMode.Impulse);
             _coyoteTimeCounter = 0f;
