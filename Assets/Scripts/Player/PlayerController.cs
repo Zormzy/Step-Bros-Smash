@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            _contextInput.Set(0,0);
+            _contextInput.Set(0, 0);
             _playerAnimatorController.AnimatorOnMove(false);
         }
 
@@ -72,7 +72,7 @@ public class PlayerController : MonoBehaviour
     {
         _playerJumpManager._playerDirection = movementInput;
         _playerJumpManager.PlayerJumpBuffer(context.ReadValueAsButton());
-        
+
         if (context.canceled)
             _playerAnimatorController.AnimatorOnJump(false);
     }
@@ -81,12 +81,16 @@ public class PlayerController : MonoBehaviour
     {
         if (context.performed)
         {
-            _playerAnimatorController.AnimatorOnAttack();
-
             if (_downMovementBtn)
+            {
+                _playerAnimatorController.AnimatorOnDownAttack();
                 _playerAttackManager.PlayerAttackDown();
+            }
             else
+            {
+                _playerAnimatorController.AnimatorOnLateralAttack();
                 _playerAttackManager.PlayerAttackNormal(_attackMovementInput);
+            }
         }
     }
 

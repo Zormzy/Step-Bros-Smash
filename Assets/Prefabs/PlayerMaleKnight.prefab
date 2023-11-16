@@ -15621,8 +15621,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 0
   serializedVersion: 3
-  m_Size: {x: 1.2, y: 1.45, z: 1.0923717}
-  m_Center: {x: -5.596428e-15, y: 0.19999999, z: 1.6061859}
+  m_Size: {x: 1.2, y: 1.0592258, z: 1.523259}
+  m_Center: {x: 2.8638794e-15, y: -0.89492714, z: 0.7015275}
 --- !u!114 &6351520358263745639
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15739,7 +15739,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6025522264309392180
 Transform:
   m_ObjectHideFlags: 0
@@ -36178,7 +36178,10 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
-  m_WarningMessage: 
+  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
+    are already bound by a Humanoid avatar. These transforms can only be changed
+    by Humanoid clips.\n\tTransform 'hand_r'\n\tFrom animation clip 'Attack02_SwordAndShiledRedoneDown
+    1'"
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
@@ -36424,6 +36427,7 @@ MonoBehaviour:
   _playerArmAttack: {fileID: 6351520358263745639}
   _weaponCollider: {fileID: 5684308397235598093}
   _isParrying: 0
+  _weaponColliderDownPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &7318455657868627676
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -36,9 +36,14 @@ public class PlayerAnimatorController : MonoBehaviour
         _animator.SetTrigger("DoubleJump");
     }
 
-    public void AnimatorOnAttack()
+    public void AnimatorOnLateralAttack()
     {
-        _animator.SetTrigger("Attack");
+        _animator.SetTrigger("LateralAttack");
+    }
+
+    public void AnimatorOnDownAttack()
+    {
+        _animator.SetTrigger("DownAttack");
     }
 
     public void AnimatorOnDefend(bool _isParrying)
