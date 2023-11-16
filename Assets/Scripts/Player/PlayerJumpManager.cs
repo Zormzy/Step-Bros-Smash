@@ -4,6 +4,7 @@ public class PlayerJumpManager : MonoBehaviour
 {
     [Header("Components")]
     private Rigidbody _rigidbody;
+    private PlayerAnimatorController _playerAnimatorController;
     public Vector2 _playerDirection;
     private Vector3 _playerJumpMovement;
 
@@ -49,6 +50,8 @@ public class PlayerJumpManager : MonoBehaviour
             else
                 _playerJumpMovement.Set(_playerDirection.x, 1f, _playerDirection.y);
 
+            _playerAnimatorController.AnimatorOnJump(true);
+            _playerAnimatorController._isGrounded = false;
             _rigidbody.AddForce(_playerJumpMovement * _jumpForce, ForceMode.Impulse);
             _coyoteTimeCounter = 0f;
             _jumpBufferTimeCounter = 0f;
@@ -61,6 +64,7 @@ public class PlayerJumpManager : MonoBehaviour
         if (!_isParrying && !_canJump && _canDoubleJump && _jumpBufferTimeCounter > 0f)
         {
             _playerJumpMovement.Set(_playerDirection.x, 1, _playerDirection.y);
+            _playerAnimatorController.AnimatorOnDoubleJump();
             _rigidbody.AddForce(_playerJumpMovement * _jumpForce, ForceMode.Impulse);
             _coyoteTimeCounter = 0f;
             _jumpBufferTimeCounter = 0f;
@@ -95,6 +99,7 @@ public class PlayerJumpManager : MonoBehaviour
     private void PlayerJumpInitialization()
     {
         _rigidbody = GetComponent<Rigidbody>();
+        _playerAnimatorController = GetComponent<PlayerAnimatorController>();
         _playerDirection.Set(0, 0);
         _playerJumpMovement.Set(0, 0, 0);
         _isGrounded = false;
@@ -116,6 +121,7 @@ public class PlayerJumpManager : MonoBehaviour
         if (collision.gameObject.CompareTag("Floor"))
         {
             _isGrounded = true;
+            _playerAnimatorController._isGrounded = true;
             _isJumpBtnPressed = false;
             _canJump = true;
             _canDoubleJump = true;

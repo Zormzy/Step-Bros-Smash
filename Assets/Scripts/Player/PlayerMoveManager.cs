@@ -28,6 +28,11 @@ public class PlayerMoveManager : MonoBehaviour
 
         if (_isMoving && !_isParrying)
             PlayerMovement();
+
+        if (_isParrying)
+            _rigidbody.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezeRotation;
+        else
+            _rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
     }
 
     public void PlayerMovement()
@@ -43,10 +48,10 @@ public class PlayerMoveManager : MonoBehaviour
 
     private void PlayerFlip()
     {
-        if (_playerMovementDirection.x < 0 && transform.rotation != Quaternion.Euler(0, 180, 0))
-            transform.rotation = Quaternion.Euler(0, 180, 0);
-        else if (_playerMovementDirection.x > 0 && transform.rotation != Quaternion.Euler(0, 0, 0))
-            transform.rotation = Quaternion.Euler(0, 0, 0);
+        if (_playerMovementDirection.x < 0 && transform.rotation != Quaternion.Euler(0, -90, 0))
+            transform.rotation = Quaternion.Euler(0, -90, 0);
+        else if (_playerMovementDirection.x > 0 && transform.rotation != Quaternion.Euler(0, 90, 0))
+            transform.rotation = Quaternion.Euler(0, 90, 0);
     }
 
     private void PlayerMovementInitialization()
@@ -57,7 +62,7 @@ public class PlayerMoveManager : MonoBehaviour
         _currentSpeed = _rigidbody.velocity.magnitude;
         _playerMovementSpeed = 15f;
         _playerMovementMaxSpeed = 10f;
-        _pushbackForce = 10f;
+        _pushbackForce = 8f;
         _isMoving = false;
         _isParrying = false;
     }
