@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class MapChoiceManager : MonoBehaviour
 {
     public int chosenMap;
+    //PlayerPreff Map Choisie
     public void Map1()
     {
         chosenMap = 1;
