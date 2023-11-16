@@ -5,6 +5,7 @@ public class PlayerJumpManager : MonoBehaviour
     [Header("Components")]
     private Rigidbody _rigidbody;
     private PlayerAnimatorController _playerAnimatorController;
+    [SerializeField] private ParticleSystem _jumpParticule;
     public Vector2 _playerDirection;
     private Vector3 _playerJumpMovement;
 
@@ -51,6 +52,7 @@ public class PlayerJumpManager : MonoBehaviour
                 _playerJumpMovement.Set(_playerDirection.x, 1f, _playerDirection.y);
 
             _playerAnimatorController.AnimatorOnJump(true);
+            _jumpParticule.Play();
             _playerAnimatorController._isGrounded = false;
             _rigidbody.AddForce(_playerJumpMovement * _jumpForce, ForceMode.Impulse);
             _coyoteTimeCounter = 0f;
