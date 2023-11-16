@@ -47,13 +47,14 @@ public class PlayerJumpManager : MonoBehaviour
     {
         if (!_isParrying && _canJump && _coyoteTimeCounter > 0f && _jumpBufferTimeCounter > 0f)
         {
+            _jumpParticule.Play();
+            _playerAnimatorController.AnimatorOnJump(true);
+
             if (_playerDirection.x != 0f)
                 _playerJumpMovement.Set(_playerDirection.x, 1.5f, _playerDirection.y);
             else
                 _playerJumpMovement.Set(_playerDirection.x, 1f, _playerDirection.y);
 
-            _playerAnimatorController.AnimatorOnJump(true);
-            _jumpParticule.Play();
             _playerAnimatorController._isGrounded = false;
             _rigidbody.AddForce(_playerJumpMovement * _jumpForce, ForceMode.Impulse);
             _coyoteTimeCounter = 0f;
@@ -66,9 +67,9 @@ public class PlayerJumpManager : MonoBehaviour
     {
         if (!_isParrying && !_canJump && _canDoubleJump && _jumpBufferTimeCounter > 0f)
         {
-            _playerJumpMovement.Set(_playerDirection.x, 1, _playerDirection.y);
             _doubleJumpParticule.Play();
             _playerAnimatorController.AnimatorOnDoubleJump();
+            _playerJumpMovement.Set(_playerDirection.x, 1, _playerDirection.y);
             _rigidbody.AddForce(_playerJumpMovement * _jumpForce, ForceMode.Impulse);
             _coyoteTimeCounter = 0f;
             _jumpBufferTimeCounter = 0f;
