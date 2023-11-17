@@ -8,6 +8,7 @@ using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using TMPro;
+using System.Linq;
 
 public class MenuHelperFunctions : MonoBehaviour
 {
@@ -25,82 +26,82 @@ public class MenuHelperFunctions : MonoBehaviour
     public int chosenCharacter;
     [SerializeField] Sprite icone1;
     [SerializeField] Sprite icone2;
+    public bool playStartCountdown;
+    int chosenMap;
+    public GameObject characterPrefab1;
+    public GameObject characterPrefab2;
+
+    List<ScriptablePlayerInfo> playerInfoScriptable;
+    public ScriptablePlayerInfo player1Info;
+    public ScriptablePlayerInfo player2Info;
+    public ScriptablePlayerInfo player3Info;
+    public ScriptablePlayerInfo player4Info;
+
+    public List<bool> hasJoined;
+    public List<int> ready;
+
 
     private void Start()
     {
+        chosenMap = PlayerPrefs.GetInt("ChosenMap", 1);
         OnOpenMenu.Invoke();
-    }
 
-    private void Update()
-    {
-        Debug.Log(playersJoined[0]);
-        Debug.Log(playersJoined[1]);
-        Debug.Log(playersJoined[2]);
-        Debug.Log(playersJoined[3]);
-    }
-
-    public void LoadScene(string sceneName)
-    {
-        SceneManager.LoadScene(sceneName);
+        playerInfoScriptable = new List<ScriptablePlayerInfo> { player1Info, player2Info, player3Info, player4Info };
+        hasJoined = new List<bool> { false, false, false, false };
+        ready = new List<int>();
     }
 
     public void PlayerJoined()
     {
-        GameObject.Find("CountdownTimer").GetComponent<TextMeshProUGUI>().text = "";
-        foreach (MenuHelperFunctions menuHelper in GameObject.FindObjectsOfType<MenuHelperFunctions>())
-        {
-            menuHelper.StopCoroutine("LobbyCountdown");
-        }
         playersJoined[playerIndex - 1] = true;
 
-
+        playerInfoScriptable[0].playerID = 1;
+        playerInfoScriptable[1].playerID = 2;
+        playerInfoScriptable[2].playerID = 3;
+        playerInfoScriptable[3].playerID = 4;
     }
 
-    public void PlayerReady()
+    private void Update()
     {
-        playersReady[playerIndex - 1] = true;
+        PlayerReady();
+        Debug.Log(ready.Count);
+    }
+
+    void PlayerReady()
+    {
+        //playersReady[playerIndex - 1] = true;
 
         bool allPlayersReady = true;
         int readyCount = 0;
-        for (int i = 0; i < playersJoined.Length; i++)
-        {
-            if (playersJoined[i] == true)
-            {
-                playerPanel.transform.Find("Player/Team X (TMP)").GetComponent<TextMeshProUGUI>().text = "Player" + playerIndex + " : Team " + "1";
 
-                if (playersReady[i] == false)
-                {
-                    allPlayersReady = false;
-                }
-                else
-                {
-                    readyCount++;
-                }
-            }
+        //for(int i = 0; i < hasJoined.Count; i++)
+        //{
+        //    if (ready.Count >= 2)
+        //    {
+        //        readyCount++;
+        //    }
+        //    else
+        //    {
+        //        allPlayersReady = false;
+        //    }
+        //}
+
+        if(ready.Count >= 2)
+        {
+            //readyCount++;
+            SceneManager.LoadScene("Level_" + chosenMap);
         }
 
-        if (allPlayersReady == true && readyCount > 1)
+        
+
+        if (allPlayersReady == true && readyCount >= 1)
         {
-            transform.Find("StartPanel").gameObject.SetActive(true);
-            StartCoroutine("GameStartCountdown");
+            //playStartCountdown = true;
+            SceneManager.LoadScene("Level_" + chosenMap);
         }
     }
 
-    IEnumerator GameStartCountdown()
-    {
-        int countdownDuration = 10;
 
-        int remainingTime = countdownDuration;
-        for (int i = 0; i < countdownDuration; i++)
-        {
-            GameObject.Find("CountdownTimer").GetComponent<TextMeshProUGUI>().text = "Start\n" + remainingTime.ToString();
-            yield return new WaitForSeconds(1);
-            remainingTime--;
-        }
-
-        //playerPreff map choisie
-        LoadScene("Level_"); //+ playerPreff
-    }
 
     public void ChosenCharacter1()
     {
@@ -113,9 +114,17 @@ public class MenuHelperFunctions : MonoBehaviour
         playerPanel.transform.Find("ButtonPanel").gameObject.SetActive(false);
         playerPanel.transform.Find("ReadyPanel").gameObject.SetActive(true);
 
+        //chosenCharacter = 1;
+
+        playerInfoScriptable[playerIndex - 1].exist = true;
+        playerInfoScriptable[playerIndex - 1].playerPrefab = characterPrefab1;
+
+        //is ready
         playersReady[playerIndex - 1] = true;
+        ready.Add(playerIndex - 1);
+
     }
-    
+
     public void ChosenCharacter2()
     {
         GameObject iconeGameObject = playerPanel.transform.Find("Player").transform.Find("Icone").gameObject;
@@ -127,7 +136,15 @@ public class MenuHelperFunctions : MonoBehaviour
         playerPanel.transform.Find("ButtonPanel").gameObject.SetActive(false);
         playerPanel.transform.Find("ReadyPanel").gameObject.SetActive(true);
 
+        //chosenCharacter = 2;
+
+        playerInfoScriptable[playerIndex - 1].exist = true;
+        playerInfoScriptable[playerIndex - 1].playerPrefab = characterPrefab2;
+        ready.Add(playerIndex - 1);
+
+        //is ready
         playersReady[playerIndex - 1] = true;
+        ready.Add(playerIndex - 1);
     }
 
     public void OnCancel()
@@ -141,19 +158,19 @@ public class MenuHelperFunctions : MonoBehaviour
 
             //player not ready
             playersReady[playerIndex - 1] = false;
+            ready.Remove(playerIndex - 1);
 
             //reset icone to grey scare
             GameObject iconeGameObject = playerPanel.transform.Find("Player").transform.Find("Icone").gameObject;
             Image iconeImage = iconeGameObject.GetComponent<Image>();
             iconeImage.sprite = null;
-            iconeImage.color = Color.gray;
+            iconeImage.color = Color.gray;          
 
-            //reset GameStartCountdown
-            GameObject.Find("CountdownTimer").GetComponent<TextMeshProUGUI>().text = "";
-            foreach (MenuHelperFunctions menuHelper in GameObject.FindObjectsOfType<MenuHelperFunctions>())
-            {
-                menuHelper.StopCoroutine("GameStartCountdown");
-            }
+            //foreach (MenuHelperFunctions menuHelper in GameObject.FindObjectsOfType<MenuHelperFunctions>())
+            //{
+            //    playStartCountdown = false;
+            //    //playerPanel.transform.Find("Player").transform.Find("Player/Team X (TMP)").GetComponent<TextMeshProUGUI>().text = "Player " + playerIndex + " : Team " + "1"; ;
+            //}
         }
         //cancel join
         else if (playersJoined[playerIndex - 1] == true)
@@ -167,7 +184,19 @@ public class MenuHelperFunctions : MonoBehaviour
             playerPanel.transform.Find("EventSystemPlayer").GetComponent<MultiplayerEventSystem>().SetSelectedGameObject(playerPanel.transform.Find("JoinPanel").transform.Find("JoinButton").gameObject);
 
             playersJoined[playerIndex - 1] = false;
+            hasJoined[playerIndex - 1] = false;
+
+            playerInfoScriptable[playerIndex - 1].exist = false;
             Debug.Log("Cancel Join" + playerIndex);
         }
+    }
+    //private bool HasChosenCharacter(int playerIndex)
+    //{
+    //    return chosenCharacter > 0 && playersReady[playerIndex - 1];
+    //}
+
+    public void ChangeBoolValue(int playerId)
+    {
+        hasJoined[playerId] = true;
     }
 }

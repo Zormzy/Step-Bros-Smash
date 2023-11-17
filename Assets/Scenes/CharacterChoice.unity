@@ -266,6 +266,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 616801798}
+        m_TargetAssemblyTypeName: MenuHelperFunctions, Assembly-CSharp
+        m_MethodName: ChangeBoolValue
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &17878235
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -398,7 +410,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &122203262
 RectTransform:
   m_ObjectHideFlags: 0
@@ -645,7 +657,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &217164611
 RectTransform:
   m_ObjectHideFlags: 0
@@ -959,7 +971,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &278031799
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1798,6 +1810,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 810238787}
+        m_TargetAssemblyTypeName: MenuHelperFunctions, Assembly-CSharp
+        m_MethodName: ChangeBoolValue
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &393261430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1975,6 +1999,18 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 667359734}
+        m_TargetAssemblyTypeName: MenuHelperFunctions, Assembly-CSharp
+        m_MethodName: ChangeBoolValue
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -2170,7 +2206,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &485013195
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2469,6 +2505,16 @@ MonoBehaviour:
   chosenCharacter: 0
   icone1: {fileID: 21300000, guid: 6ae8eecb5b566e24894277697f9d6f59, type: 3}
   icone2: {fileID: 21300000, guid: 511e43b36b61c5549b718d1b63e5c0fa, type: 3}
+  playStartCountdown: 0
+  characterPrefab1: {fileID: 5724001473618974185, guid: 90d8791bbc5925a49ae519cb2070d6ff,
+    type: 3}
+  characterPrefab2: {fileID: 5724001473618974185, guid: d8aa013f562c2c144b195a55e7921601,
+    type: 3}
+  player1Info: {fileID: 11400000, guid: a4c2f07d93b084c40b4e18c6aa27746c, type: 2}
+  player2Info: {fileID: 11400000, guid: 0855d54d3f526cc428895824cba9b2f9, type: 2}
+  player3Info: {fileID: 11400000, guid: 37d49dd848992504db4a3b25b23018fb, type: 2}
+  player4Info: {fileID: 11400000, guid: 99ee5f3e484f7374cb1beb896ee98ffd, type: 2}
+  hasJoined: 
 --- !u!1 &663181152
 GameObject:
   m_ObjectHideFlags: 0
@@ -2645,6 +2691,16 @@ MonoBehaviour:
   chosenCharacter: 0
   icone1: {fileID: 21300000, guid: 6ae8eecb5b566e24894277697f9d6f59, type: 3}
   icone2: {fileID: 21300000, guid: 511e43b36b61c5549b718d1b63e5c0fa, type: 3}
+  playStartCountdown: 0
+  characterPrefab1: {fileID: 5724001473618974185, guid: 90d8791bbc5925a49ae519cb2070d6ff,
+    type: 3}
+  characterPrefab2: {fileID: 5724001473618974185, guid: d8aa013f562c2c144b195a55e7921601,
+    type: 3}
+  player1Info: {fileID: 11400000, guid: a4c2f07d93b084c40b4e18c6aa27746c, type: 2}
+  player2Info: {fileID: 11400000, guid: 0855d54d3f526cc428895824cba9b2f9, type: 2}
+  player3Info: {fileID: 11400000, guid: 37d49dd848992504db4a3b25b23018fb, type: 2}
+  player4Info: {fileID: 11400000, guid: 99ee5f3e484f7374cb1beb896ee98ffd, type: 2}
+  hasJoined: 
 --- !u!1 &678361353
 GameObject:
   m_ObjectHideFlags: 0
@@ -3109,6 +3165,16 @@ MonoBehaviour:
   chosenCharacter: 0
   icone1: {fileID: 21300000, guid: 6ae8eecb5b566e24894277697f9d6f59, type: 3}
   icone2: {fileID: 21300000, guid: 511e43b36b61c5549b718d1b63e5c0fa, type: 3}
+  playStartCountdown: 0
+  characterPrefab1: {fileID: 5724001473618974185, guid: 90d8791bbc5925a49ae519cb2070d6ff,
+    type: 3}
+  characterPrefab2: {fileID: 5724001473618974185, guid: d8aa013f562c2c144b195a55e7921601,
+    type: 3}
+  player1Info: {fileID: 11400000, guid: a4c2f07d93b084c40b4e18c6aa27746c, type: 2}
+  player2Info: {fileID: 11400000, guid: 0855d54d3f526cc428895824cba9b2f9, type: 2}
+  player3Info: {fileID: 11400000, guid: 37d49dd848992504db4a3b25b23018fb, type: 2}
+  player4Info: {fileID: 11400000, guid: 99ee5f3e484f7374cb1beb896ee98ffd, type: 2}
+  hasJoined: 
 --- !u!1 &848072519
 GameObject:
   m_ObjectHideFlags: 0
@@ -3468,6 +3534,16 @@ MonoBehaviour:
   chosenCharacter: 0
   icone1: {fileID: 21300000, guid: 6ae8eecb5b566e24894277697f9d6f59, type: 3}
   icone2: {fileID: 21300000, guid: 511e43b36b61c5549b718d1b63e5c0fa, type: 3}
+  playStartCountdown: 0
+  characterPrefab1: {fileID: 5724001473618974185, guid: 90d8791bbc5925a49ae519cb2070d6ff,
+    type: 3}
+  characterPrefab2: {fileID: 5724001473618974185, guid: d8aa013f562c2c144b195a55e7921601,
+    type: 3}
+  player1Info: {fileID: 11400000, guid: a4c2f07d93b084c40b4e18c6aa27746c, type: 2}
+  player2Info: {fileID: 11400000, guid: 0855d54d3f526cc428895824cba9b2f9, type: 2}
+  player3Info: {fileID: 11400000, guid: 37d49dd848992504db4a3b25b23018fb, type: 2}
+  player4Info: {fileID: 11400000, guid: 99ee5f3e484f7374cb1beb896ee98ffd, type: 2}
+  hasJoined: 
 --- !u!1 &914667141
 GameObject:
   m_ObjectHideFlags: 0
@@ -3687,6 +3763,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 895729584}
+        m_TargetAssemblyTypeName: MenuHelperFunctions, Assembly-CSharp
+        m_MethodName: ChangeBoolValue
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &927945232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3896,6 +3984,37 @@ RectTransform:
   m_AnchoredPosition: {x: -480.39996, y: -0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1005788691
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1005788693}
+  m_Layer: 0
+  m_Name: ManagerMultiplayer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1005788693
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1005788691}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1387, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1018667784
 GameObject:
   m_ObjectHideFlags: 0
@@ -4029,7 +4148,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'PlayerX: Team X'
+  m_text: 'Player2: Team 2'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8abb58b4e385f784bbd2c8842e9bec08, type: 2}
   m_sharedMaterial: {fileID: -6405048626353518446, guid: 8abb58b4e385f784bbd2c8842e9bec08,
@@ -4408,7 +4527,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1351058328
 Transform:
   m_ObjectHideFlags: 0
@@ -4436,7 +4555,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1928ae1f72de30d4b9da67d34085f7a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chosenCharacter: 0
+  menuHelperFunctions: {fileID: 1939352813}
 --- !u!1 &1363359042
 GameObject:
   m_ObjectHideFlags: 0
@@ -4674,7 +4793,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'PlayerX: Team X'
+  m_text: 'Player4: Team 4'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8abb58b4e385f784bbd2c8842e9bec08, type: 2}
   m_sharedMaterial: {fileID: -6405048626353518446, guid: 8abb58b4e385f784bbd2c8842e9bec08,
@@ -5211,7 +5330,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'PlayerX: Team X'
+  m_text: 'Player3: Team 3'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8abb58b4e385f784bbd2c8842e9bec08, type: 2}
   m_sharedMaterial: {fileID: -6405048626353518446, guid: 8abb58b4e385f784bbd2c8842e9bec08,
@@ -6466,6 +6585,16 @@ MonoBehaviour:
   chosenCharacter: 0
   icone1: {fileID: 0}
   icone2: {fileID: 0}
+  playStartCountdown: 0
+  characterPrefab1: {fileID: 5724001473618974185, guid: 90d8791bbc5925a49ae519cb2070d6ff,
+    type: 3}
+  characterPrefab2: {fileID: 5724001473618974185, guid: d8aa013f562c2c144b195a55e7921601,
+    type: 3}
+  player1Info: {fileID: 11400000, guid: a4c2f07d93b084c40b4e18c6aa27746c, type: 2}
+  player2Info: {fileID: 11400000, guid: 0855d54d3f526cc428895824cba9b2f9, type: 2}
+  player3Info: {fileID: 11400000, guid: 37d49dd848992504db4a3b25b23018fb, type: 2}
+  player4Info: {fileID: 11400000, guid: 99ee5f3e484f7374cb1beb896ee98ffd, type: 2}
+  hasJoined: 
 --- !u!1 &1953939363
 GameObject:
   m_ObjectHideFlags: 0
@@ -6523,7 +6652,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'PlayerX: Team X'
+  m_text: 'Player1: Team 1'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8abb58b4e385f784bbd2c8842e9bec08, type: 2}
   m_sharedMaterial: {fileID: -6405048626353518446, guid: 8abb58b4e385f784bbd2c8842e9bec08,
@@ -6959,3 +7088,4 @@ SceneRoots:
   - {fileID: 1284723981}
   - {fileID: 1351058328}
   - {fileID: 1939352812}
+  - {fileID: 1005788693}

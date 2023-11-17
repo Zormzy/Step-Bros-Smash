@@ -5,17 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class MapChoiceManager : MonoBehaviour
 {
-    public int chosenMap;
-    //PlayerPreff Map Choisie
     public void Map1()
     {
-        chosenMap = 1;
+        PlayerPrefs.SetInt("ChosenMap", 1);
         SceneManager.LoadScene("CharacterChoice");
     }
 
     public void Map2()
     {
-        chosenMap = 2;
+        PlayerPrefs.SetInt("ChosenMap", 2);
         SceneManager.LoadScene("CharacterChoice");
     }
 }
