@@ -5,6 +5,8 @@ public class PlayerJumpManager : MonoBehaviour
     [Header("Components")]
     private Rigidbody _rigidbody;
     private PlayerAnimatorController _playerAnimatorController;
+    private PlayerMoveManager _playerMoveManager;
+    private PlayerAudioManager _playerAudioManager;
     [SerializeField] private ParticleSystem _jumpParticule;
     [SerializeField] private ParticleSystem _doubleJumpParticule;
     public Vector2 _playerDirection;
@@ -30,6 +32,10 @@ public class PlayerJumpManager : MonoBehaviour
     private float _jumpBufferTimeCounter;
     public float _jumpBoost;
 
+    [Header("Jump SFX")]
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioClip _jumpLandingSFX;
+
     private void Awake()
     {
         PlayerJumpInitialization();
@@ -47,6 +53,7 @@ public class PlayerJumpManager : MonoBehaviour
     {
         if (!_isParrying && _canJump && _coyoteTimeCounter > 0f && _jumpBufferTimeCounter > 0f)
         {
+            _playerAudioManager.AudioSFXOnJump();
             _jumpParticule.Play();
             _playerAnimatorController.AnimatorOnJump(true);
 
@@ -56,6 +63,7 @@ public class PlayerJumpManager : MonoBehaviour
                 _playerJumpMovement.Set(_playerDirection.x, 1f, _playerDirection.y);
 
             _playerAnimatorController._isGrounded = false;
+            _playerMoveManager._isGrounded = false;
             _rigidbody.AddForce(_playerJumpMovement * _jumpForce, ForceMode.Impulse);
             _coyoteTimeCounter = 0f;
             _jumpBufferTimeCounter = 0f;
@@ -67,6 +75,7 @@ public class PlayerJumpManager : MonoBehaviour
     {
         if (!_isParrying && !_canJump && _canDoubleJump && _jumpBufferTimeCounter > 0f)
         {
+            _playerAudioManager.AudioSFXOnDoubleJump();
             _doubleJumpParticule.Play();
             _playerAnimatorController.AnimatorOnDoubleJump();
             _playerJumpMovement.Set(_playerDirection.x, 1, _playerDirection.y);
@@ -105,6 +114,8 @@ public class PlayerJumpManager : MonoBehaviour
     {
         _rigidbody = GetComponent<Rigidbody>();
         _playerAnimatorController = GetComponent<PlayerAnimatorController>();
+        _playerMoveManager = GetComponent<PlayerMoveManager>();
+        _playerAudioManager = GetComponent<PlayerAudioManager>();
         _playerDirection.Set(0, 0);
         _playerJumpMovement.Set(0, 0, 0);
         _isGrounded = false;
@@ -125,7 +136,10 @@ public class PlayerJumpManager : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Floor"))
         {
+            _audioSource.clip = _jumpLandingSFX;
+            _audioSource.Play();
             _isGrounded = true;
+            _playerMoveManager._isGrounded = true;
             _playerAnimatorController._isGrounded = true;
             _isJumpBtnPressed = false;
             _canJump = true;

@@ -11,6 +11,11 @@ public class PlayerArmAttack : MonoBehaviour
     private float _playerDamage;
     public bool _hasHit;
 
+    [Header("Hit SFX")]
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioClip _parrySFX;
+    [SerializeField] private AudioClip _hitSFX;
+
     private void Awake()
     {
         ArmAttackInitialization();
@@ -26,10 +31,18 @@ public class PlayerArmAttack : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Parry") && !_hasHit)
+        {
+            _audioSource.clip = _parrySFX;
+            _audioSource.volume = 1f;
+            _audioSource.Play();
             _hasHit = true;
+        }
 
         if (other.CompareTag("Player") && !_hasHit)
         {
+            _audioSource.clip = _hitSFX;
+            _audioSource.volume = 0.25f;
+            _audioSource.Play();
             _swordHitPosition.Set(other.transform.position.x, other.transform.position.y + 0.6f, other.transform.position.z);
             _weaponHitParticule.transform.position = _swordHitPosition;
             _weaponHitParticule.Play();

@@ -10,12 +10,17 @@ public class PlayerMoveManager : MonoBehaviour
     [Header("Boolean")]
     public bool _isMoving;
     public bool _isParrying;
+    public bool _isGrounded;
 
     [Header("Movement speed")]
     public float _currentSpeed;
     public float _playerMovementSpeed;
     public float _playerMovementMaxSpeed;
     public float _pushbackForce;
+
+    [Header("Movement SFX")]
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioClip _walkSFX;
 
     private void Awake()
     {
@@ -38,6 +43,15 @@ public class PlayerMoveManager : MonoBehaviour
     public void PlayerMovement()
     {
         PlayerFlip();
+
+        if (_audioSource.clip != _walkSFX)
+            _audioSource.clip = _walkSFX;
+        
+        if (!_audioSource.isPlaying && _isGrounded)
+        {
+            _audioSource.volume = 0.25f;
+            _audioSource.Play();
+        }
 
         _playerMovement.Set(_playerMovementDirection.x, 0, _playerMovementDirection.y);
         _rigidbody.AddForce(_playerMovement * _playerMovementSpeed, ForceMode.Force);
